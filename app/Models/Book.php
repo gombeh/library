@@ -10,4 +10,10 @@ class Book extends Model
     use HasFactory;
 
     protected $fillable = ['title', 'author'];
+
+
+    public function path(): string
+    {
+        return '/books/' .  $this->id;
+    }
 }

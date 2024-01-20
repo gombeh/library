@@ -9,14 +9,21 @@ class BookController extends Controller
 {
     public function store(Request $request) {
         $book  = Book::create($this->validateRequest($request));
-        return $book->toJson();
+
+        return redirect($book->path());
     }
 
     public function update(Request $request, Book $book) {
 
         $book->update($this->validateRequest($request));
+        return redirect($book->path());
 
-        return $book->toJson();
+    }
+
+    public function destroy(Book $book)
+    {
+        $book->delete();
+        return redirect('/books');
     }
 
     /**
